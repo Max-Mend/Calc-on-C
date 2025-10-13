@@ -1,40 +1,44 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <math.h>
+#include <string.h>
 
 int main() {
     int num1, num2;
-    char operation;
-    int res;
+    char operation[3];
+    double res;
 
     while (true) {
         printf("Calc: ");
-        if (scanf("%d %c %d", &num1, &operation, &num2) != 3) {
-            printf("Invalid format!\n");
+        if (scanf("%d %2s %d", &num1, operation, &num2) != 3) {
             break;
         }
 
-        if (operation == '-') {
-            res = num1 - num2;
-        }
-        else if (operation == '+') {
+        if (strcmp(operation, "+") == 0) {
             res = num1 + num2;
         }
-        else if (operation == '*') {
+        else if (strcmp(operation, "-") == 0) {
+            res = num1 - num2;
+        }
+        else if (strcmp(operation, "*") == 0) {
             res = num1 * num2;
         }
-        else if (operation == '/') {
+        else if (strcmp(operation, "/") == 0) {
             if (num2 == 0) {
-                printf("Erorr: division by zero!\n");
+                printf("Error: division by zero!\n");
                 continue;
             }
-            res = num1 / num2;
+            res = (double)num1 / num2;
+        }
+        else if (strcmp(operation, "**") == 0) {
+            res = pow(num1, num2);
         }
         else {
-            printf("Unknown operation '%c'\n", operation);
+            printf("Unknown operation '%s'\n", operation);
             continue;
         }
 
-        printf("Result: %d\n", res);
+        printf("Result: %.2lf\n", res);
     }
 
     return 0;
