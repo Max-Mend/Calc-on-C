@@ -5,6 +5,7 @@ For this project, I used two basic libraries:
 ```
 #include <stdio.h>
 #include <stdbool.h>
+#include <math.h>
 ```
 
 The program uses a "while" loop to continuously read user input.
